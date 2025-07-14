@@ -1,0 +1,73 @@
+# Build
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+.history/
+
+# Rider
+.idea/
+*.sln.iml
+
+# ASP.NET temporary files
+*.dbmdl
+*.dbml
+*.pdb
+*.cache
+*.log
+
+# Others
+*.DS_Store
+*.vs/
+*.swp
+*.tmp
+*.bak
+*.ncb
+*.sdf
+*.suo
+*.sln.docstates
+TestResult*/ 
+TestResults/
+
+# Dependency folders
+node_modules/
+packages/
+.nuget/
+
+# Dotnet tooling
+.project.lock.json
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# JetBrains Rider
+.idea/
