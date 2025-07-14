@@ -3,7 +3,7 @@ using Infrastructure.DataModel;
 using Infrastructure.Repositories;
 using Moq;
 
-namespace Infrastructure.Tests;
+namespace Infrastructure.Tests.DeviceRepositoryTests;
 
 public class DeviceRepositoryExistsAsyncTests : RepositoryTestBase
 {

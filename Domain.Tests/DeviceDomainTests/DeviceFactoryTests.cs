@@ -3,7 +3,7 @@ using Domain.IRepository;
 using Domain.Visitors;
 using Moq;
 
-namespace Domain.Tests;
+namespace Domain.Tests.DeviceDomainTests;
 
 public class DeviceFactoryTests
 {

@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 
-namespace Infrastructure.Tests;
+namespace Infrastructure.Tests.DeviceRepositoryTests;
 
 public class RepositoryTestBase
 {

@@ -5,7 +5,7 @@ using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 
-namespace Infrastructure.Tests;
+namespace Infrastructure.Tests.DeviceRepositoryTests;
 
 public class DeviceExistsAsyncTests : RepositoryTestBase
 {

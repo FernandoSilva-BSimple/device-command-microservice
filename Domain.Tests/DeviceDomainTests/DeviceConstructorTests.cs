@@ -1,7 +1,7 @@
 using Domain.Models;
 using Moq;
 
-namespace Domain.Tests;
+namespace Domain.Tests.DeviceDomainTests;
 
 public class ConstructorTests
 {
