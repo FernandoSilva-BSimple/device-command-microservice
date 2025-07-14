@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "agEguKs0iVE=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\fernandosilva\\Documents\\ExercicioAcademia\\device-command\\InterfaceAdapters\\InterfaceAdapters.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fernandosilva\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.2\\microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512",
+    "C:\\Users\\fernandosilva\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
