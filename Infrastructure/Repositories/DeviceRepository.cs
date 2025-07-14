@@ -22,6 +22,12 @@ public class DeviceRepository : IDeviceRepository
         return device == null ? false : true;
     }
 
+    public async Task<bool> ExistsAsync(Guid id)
+    {
+        var device = await _context.Set<DeviceDataModel>().FirstOrDefaultAsync(d => d.Id == id);
+        return device == null ? false : true;
+    }
+
     public async Task<IDevice?> GetByIdAsync(Guid id)
     {
         var deviceDM = await _context.Set<DeviceDataModel>().FirstOrDefaultAsync(d => d.Id == id);

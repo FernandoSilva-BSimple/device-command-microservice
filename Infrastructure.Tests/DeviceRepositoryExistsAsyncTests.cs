@@ -59,4 +59,54 @@ public class DeviceRepositoryExistsAsyncTests : RepositoryTestBase
         //assert
         Assert.False(result);
     }
+
+    [Fact]
+    public async Task WhenDeviceExistsWithId_ThenExistsAsyncReturnsTrue()
+    {
+        //arrange
+        var device1 = new Mock<IDevice>();
+        var guid1 = Guid.NewGuid();
+        device1.Setup(d => d.Id).Returns(guid1);
+        device1.Setup(d => d.Description).Returns("description1");
+        device1.Setup(d => d.Brand).Returns("brand1");
+        device1.Setup(d => d.Model).Returns("model1");
+        device1.Setup(d => d.SerialNumber).Returns("serialNumber1");
+        var deviceDM1 = new DeviceDataModel(device1.Object);
+        context.Devices.Add(deviceDM1);
+
+        await context.SaveChangesAsync();
+
+        var repository = new DeviceRepository(context, _mapper.Object);
+
+        //act
+        var result = await repository.ExistsAsync(guid1);
+
+        //assert
+        Assert.True(result);
+    }
+
+    [Fact]
+    public async Task WhenDeviceDoesNotExistWithId_ThenExistsAsyncReturnsFalse()
+    {
+        //arrange
+        var device1 = new Mock<IDevice>();
+        var guid1 = Guid.NewGuid();
+        device1.Setup(d => d.Id).Returns(guid1);
+        device1.Setup(d => d.Description).Returns("description1");
+        device1.Setup(d => d.Brand).Returns("brand1");
+        device1.Setup(d => d.Model).Returns("model1");
+        device1.Setup(d => d.SerialNumber).Returns("serialNumber1");
+        var deviceDM1 = new DeviceDataModel(device1.Object);
+        context.Devices.Add(deviceDM1);
+
+        await context.SaveChangesAsync();
+
+        var repository = new DeviceRepository(context, _mapper.Object);
+
+        //act
+        var result = await repository.ExistsAsync(Guid.NewGuid());
+
+        //assert
+        Assert.False(result);
+    }
 }
