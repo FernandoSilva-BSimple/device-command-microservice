@@ -27,7 +27,15 @@ builder.Services.AddDbContext<DeviceContext>(opt =>
 //Services
 builder.Services.AddTransient<IDeviceService, DeviceService>();
 
-builder.Services.AddTransient<IMessagePublisher, MassTransitPublisher>();
+// Publisher and fake publisher
+if (builder.Environment.IsEnvironment("Test"))
+{
+    builder.Services.AddScoped<IMessagePublisher, FakePublisherForTests>();
+}
+else
+{
+    builder.Services.AddTransient<IMessagePublisher, MassTransitPublisher>();
+}
 
 //Repositories
 builder.Services.AddTransient<IDeviceRepository, DeviceRepository>();
