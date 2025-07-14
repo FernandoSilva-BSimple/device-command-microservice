@@ -1,6 +1,11 @@
+using Domain.Interfaces;
+
 namespace Domain.IRepository;
 
 public interface IDeviceRepository
 {
-    Task<bool> Exists(string brand, string model, string serialNumber);
+    Task<bool> ExistsAsync(string brand, string model, string serialNumber);
+    Task<IDevice?> GetByIdAsync(Guid id);
+    Task<IDevice> AddAsync(IDevice device);
+
 }

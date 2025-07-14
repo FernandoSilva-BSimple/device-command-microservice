@@ -12,7 +12,7 @@ public class DeviceFactoryTests
     {
         //arrange
         Mock<IDeviceRepository> deviceRepo = new Mock<IDeviceRepository>();
-        deviceRepo.Setup(d => d.Exists(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(false);
+        deviceRepo.Setup(d => d.ExistsAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(false);
 
         var deviceFactory = new DeviceFactory(deviceRepo.Object);
 
@@ -37,7 +37,7 @@ public class DeviceFactoryTests
     {
         //arrange
         Mock<IDeviceRepository> deviceRepo = new Mock<IDeviceRepository>();
-        deviceRepo.Setup(d => d.Exists(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(true);
+        deviceRepo.Setup(d => d.ExistsAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(true);
 
         var deviceFactory = new DeviceFactory(deviceRepo.Object);
         string description = "Work laptop";
