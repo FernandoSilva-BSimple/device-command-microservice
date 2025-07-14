@@ -39,10 +39,10 @@ public class Device : IDevice
     private void ValidateDescription(string description)
     {
         if (string.IsNullOrWhiteSpace(description))
-            throw new ArgumentException("A descrição é obrigatória.", nameof(description));
+            throw new ArgumentException("Description is required.", nameof(description));
 
         if (description.Length < 10 || description.Length > 50)
-            throw new ArgumentException("A descrição deve ter entre 10 e 50 caracteres.", nameof(description));
+            throw new ArgumentException("Description must have between 10 and 50 characters.", nameof(description));
     }
 
     private void ValidateBrand(string brand)
@@ -51,7 +51,7 @@ public class Device : IDevice
             throw new ArgumentException("Brand is required.", nameof(brand));
 
         if (brand.Length < 3 || brand.Length > 20)
-            throw new ArgumentException("Brand must be between 3 and 20 characters.", nameof(brand));
+            throw new ArgumentException("Brand must have between 3 and 20 characters.", nameof(brand));
 
         if (!brand.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
             throw new ArgumentException("Brand must contain only alphanumeric characters.", nameof(brand));
@@ -64,7 +64,7 @@ public class Device : IDevice
             throw new ArgumentException("Model is required.", nameof(model));
 
         if (model.Length < 2 || model.Length > 20)
-            throw new ArgumentException("Model must be between 2 and 20 characters.", nameof(model));
+            throw new ArgumentException("Model must have between 2 and 20 characters.", nameof(model));
 
         if (!model.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
             throw new ArgumentException("Model must contain only alphanumeric characters.", nameof(model));

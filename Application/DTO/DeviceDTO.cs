@@ -16,4 +16,6 @@ public class DeviceDTO
         Model = model;
         SerialNumber = serialNumber;
     }
+
+    public DeviceDTO() { }
 }
