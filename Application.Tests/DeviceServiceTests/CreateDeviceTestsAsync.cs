@@ -38,7 +38,7 @@ public class CreateDeviceTestsAsync
 
         var expectedDto = new DeviceDTO(deviceId, description, brand, model, serialNumber);
 
-        var expectedMessage = new DeviceCreatedMessage(deviceId, description, brand, model, serialNumber);
+        var expectedMessage = new DeviceCreatedMessage(deviceId, description, brand, model, serialNumber, null);
 
         deviceFactoryDouble
             .Setup(df => df.CreateDevice(description, brand, model, serialNumber))
@@ -78,13 +78,15 @@ public class CreateDeviceTestsAsync
         deviceFactoryDouble.Verify(df => df.CreateDevice(description, brand, model, serialNumber), Times.Once);
         deviceRepoDouble.Verify(dr => dr.AddAsync(deviceInstance), Times.Once);
         mapperDouble.Verify(m => m.Map<DeviceDTO>(deviceInstance), Times.Once);
-        publisherDouble.Verify(p => p.PublishDeviceCreatedAsync(It.Is<DeviceCreatedMessage>(msg =>
-            msg.Id == expectedMessage.Id &&
-            msg.Description == expectedMessage.Description &&
-            msg.Brand == expectedMessage.Brand &&
-            msg.Model == expectedMessage.Model &&
-            msg.SerialNumber == expectedMessage.SerialNumber
-        )), Times.Once);
+        publisherDouble.Verify(p => p.PublishDeviceCreatedAsync(
+    expectedDto.Id,
+    expectedDto.Description,
+    expectedDto.Brand,
+    expectedDto.Model,
+    expectedDto.SerialNumber,
+    null
+), Times.Once);
+
     }
 
     [Fact]
@@ -116,7 +118,13 @@ public class CreateDeviceTestsAsync
         deviceFactoryDouble.Verify(df => df.CreateDevice(createDto.Description, createDto.Brand, createDto.Model, createDto.SerialNumber), Times.Once);
         deviceRepoDouble.Verify(dr => dr.AddAsync(It.IsAny<IDevice>()), Times.Never);
         mapperDouble.Verify(m => m.Map<DeviceDTO>(It.IsAny<IDevice>()), Times.Never);
-        publisherDouble.Verify(p => p.PublishDeviceCreatedAsync(It.IsAny<DeviceCreatedMessage>()), Times.Never);
-
+        publisherDouble.Verify(p => p.PublishDeviceCreatedAsync(
+            It.IsAny<Guid>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<Guid?>()
+        ), Times.Never);
     }
 }

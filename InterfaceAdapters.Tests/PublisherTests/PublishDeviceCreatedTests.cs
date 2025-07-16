@@ -11,25 +11,30 @@ public class PublishDeviceCreatedTests
     [Fact]
     public async Task PublishDeviceCreatedAsync_ShouldPublishEventWithCorrectData()
     {
-        //arrange
+        // Arrange
         var publishEndpointDouble = new Mock<IPublishEndpoint>();
-
         var publisher = new MassTransitPublisher(publishEndpointDouble.Object);
 
-        var deviceDouble = new Mock<IDevice>();
+        var id = Guid.NewGuid();
+        var description = "Work laptop";
+        var brand = "Dell";
+        var model = "Latitude 14";
+        var serialNumber = "1234567890";
+        Guid? assignmentTempId = null;
 
-        deviceDouble.Setup(d => d.Id).Returns(Guid.NewGuid());
-        deviceDouble.Setup(d => d.Description).Returns("Work laptop");
-        deviceDouble.Setup(d => d.Brand).Returns("Dell");
-        deviceDouble.Setup(d => d.Model).Returns("Latitude 14");
-        deviceDouble.Setup(d => d.SerialNumber).Returns("1234567890");
+        // Act
+        await publisher.PublishDeviceCreatedAsync(id, description, brand, model, serialNumber, assignmentTempId);
 
-        var deviceCreatedMessage = new DeviceCreatedMessage(deviceDouble.Object.Id, deviceDouble.Object.Description, deviceDouble.Object.Brand, deviceDouble.Object.Model, deviceDouble.Object.SerialNumber);
-
-        //act
-        await publisher.PublishDeviceCreatedAsync(deviceCreatedMessage);
-
-        //assert
-        publishEndpointDouble.Verify(p => p.Publish(deviceCreatedMessage, It.IsAny<CancellationToken>()), Times.Once);
+        // Assert
+        publishEndpointDouble.Verify(p => p.Publish(
+            It.Is<DeviceCreatedMessage>(msg =>
+                msg.Id == id &&
+                msg.Description == description &&
+                msg.Brand == brand &&
+                msg.Model == model &&
+                msg.SerialNumber == serialNumber &&
+                msg.CorrelationId == assignmentTempId
+            ), It.IsAny<CancellationToken>()), Times.Once);
     }
+
 }

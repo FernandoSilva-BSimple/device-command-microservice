@@ -34,9 +34,7 @@ public class DeviceService : IDeviceService
 
             var result = _mapper.Map<DeviceDTO>(addedDevice);
 
-            var message = new DeviceCreatedMessage(result.Id, createDeviceDTO.Description, createDeviceDTO.Brand, createDeviceDTO.Model, createDeviceDTO.SerialNumber);
-
-            await _messagePublisher.PublishDeviceCreatedAsync(message);
+            await _messagePublisher.PublishDeviceCreatedAsync(result.Id, createDeviceDTO.Description, createDeviceDTO.Brand, createDeviceDTO.Model, createDeviceDTO.SerialNumber, null);
             return Result<DeviceDTO>.Success(result);
         }
         catch (ArgumentException ex)
@@ -60,5 +58,14 @@ public class DeviceService : IDeviceService
 
         var dto = _mapper.Map<DeviceDTO>(addedDevice);
         return Result<DeviceDTO>.Success(dto);
+    }
+
+    public async Task<DeviceDTO> AddDeviceFromSagaAsync(CreateDeviceDTO createDeviceDTO, Guid assignmentTempId)
+    {
+        var device = await _deviceFactory.CreateDevice(createDeviceDTO.Description, createDeviceDTO.Brand, createDeviceDTO.Model, createDeviceDTO.SerialNumber);
+        await _deviceRepository.AddAsync(device);
+
+        await _messagePublisher.PublishDeviceCreatedAsync(device.Id, device.Description, device.Brand, device.Model, device.SerialNumber, assignmentTempId);
+        return _mapper.Map<DeviceDTO>(device);
     }
 }

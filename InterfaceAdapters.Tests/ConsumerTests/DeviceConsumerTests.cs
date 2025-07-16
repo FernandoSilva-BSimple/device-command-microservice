@@ -15,7 +15,7 @@ public class DeviceConsumerTests
         var deviceDouble = new Mock<IDeviceService>();
         var deviceConsumer = new DeviceCreatedConsumer(deviceDouble.Object);
 
-        var message = new DeviceCreatedMessage(Guid.NewGuid(), "Work laptop", "Dell", "Latitude 14", "1234567890");
+        var message = new DeviceCreatedMessage(Guid.NewGuid(), "Work laptop", "Dell", "Latitude 14", "1234567890", null);
 
         var context = Mock.Of<ConsumeContext<DeviceCreatedMessage>>(c => c.Message == message);
 
