@@ -62,6 +62,7 @@ var instanceId = InstanceInfo.InstanceId;
 builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<DeviceCreatedConsumer>();
+    x.AddConsumer<AssignmentWithoutDeviceCreatedConsumer>();
 
     x.UsingRabbitMq((ctx, cfg) =>
     {
@@ -74,6 +75,11 @@ builder.Services.AddMassTransit(x =>
         cfg.ReceiveEndpoint($"devices-cmd-{instanceId}", e =>
         {
             e.ConfigureConsumer<DeviceCreatedConsumer>(ctx);
+        });
+
+        cfg.ReceiveEndpoint("devices-cmd-saga", e =>
+        {
+            e.ConfigureConsumer<AssignmentWithoutDeviceCreatedConsumer>(ctx);
         });
     });
 });

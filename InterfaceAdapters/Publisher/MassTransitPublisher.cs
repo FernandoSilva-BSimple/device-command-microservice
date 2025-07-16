@@ -18,5 +18,6 @@ public class MassTransitPublisher : IMessagePublisher
     {
         var deviceCreatedMessage = new DeviceCreatedMessage(id, description, brand, model, serialNumber, assignmentTempId);
         await _publishEndpoint.Publish(deviceCreatedMessage);
+        Console.WriteLine(deviceCreatedMessage);
     }
 }
