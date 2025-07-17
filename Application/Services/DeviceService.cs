@@ -6,9 +6,8 @@ using Domain.IRepository;
 using AutoMapper;
 using Domain.Models;
 using Domain.Interfaces;
-using Contracts.Messages;
 
-namespace Application.Service;
+namespace Application.Services;
 
 public class DeviceService : IDeviceService
 {

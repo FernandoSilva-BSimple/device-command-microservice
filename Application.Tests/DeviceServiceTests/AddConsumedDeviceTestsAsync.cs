@@ -1,6 +1,6 @@
 using Application.DTO;
 using Application.IPublishers;
-using Application.Service;
+using Application.Services;
 using AutoMapper;
 using Domain.Factory;
 using Domain.Interfaces;

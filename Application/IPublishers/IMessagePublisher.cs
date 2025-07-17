@@ -1,6 +1,3 @@
-using Contracts.Messages;
-using Domain.Interfaces;
-
 namespace Application.IPublishers;
 
 public interface IMessagePublisher

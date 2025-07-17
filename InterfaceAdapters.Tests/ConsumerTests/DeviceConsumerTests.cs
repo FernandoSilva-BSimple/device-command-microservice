@@ -1,5 +1,5 @@
 using Application.Interfaces;
-using Contracts.Messages;
+using Domain.Messages;
 using InterfaceAdapters.Consumers;
 using MassTransit;
 using Moq;

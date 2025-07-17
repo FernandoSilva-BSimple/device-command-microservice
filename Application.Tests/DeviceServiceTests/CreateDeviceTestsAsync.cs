@@ -1,11 +1,11 @@
 using Application.DTO;
 using Application.IPublishers;
-using Application.Service;
+using Application.Services;
 using AutoMapper;
-using Contracts.Messages;
 using Domain.Factory;
 using Domain.Interfaces;
 using Domain.IRepository;
+using Domain.Messages;
 using Moq;
 
 namespace Application.Tests.DeviceServiceTests;
@@ -79,13 +79,13 @@ public class CreateDeviceTestsAsync
         deviceRepoDouble.Verify(dr => dr.AddAsync(deviceInstance), Times.Once);
         mapperDouble.Verify(m => m.Map<DeviceDTO>(deviceInstance), Times.Once);
         publisherDouble.Verify(p => p.PublishDeviceCreatedAsync(
-    expectedDto.Id,
-    expectedDto.Description,
-    expectedDto.Brand,
-    expectedDto.Model,
-    expectedDto.SerialNumber,
-    null
-), Times.Once);
+            expectedDto.Id,
+            expectedDto.Description,
+            expectedDto.Brand,
+            expectedDto.Model,
+            expectedDto.SerialNumber,
+            null
+        ), Times.Once);
 
     }
 

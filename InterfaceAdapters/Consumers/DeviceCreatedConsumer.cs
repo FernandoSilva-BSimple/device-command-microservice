@@ -1,5 +1,5 @@
 using Application.Interfaces;
-using Contracts.Messages;
+using Domain.Messages;
 using MassTransit;
 
 namespace InterfaceAdapters.Consumers;

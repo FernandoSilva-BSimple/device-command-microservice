@@ -1,5 +1,4 @@
 using Application.IPublishers;
-using Contracts.Messages;
 
 public class FakePublisherForTests : IMessagePublisher
 {

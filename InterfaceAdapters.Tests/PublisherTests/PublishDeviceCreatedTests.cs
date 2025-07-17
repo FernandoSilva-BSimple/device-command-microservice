@@ -1,5 +1,5 @@
-using Contracts.Messages;
 using Domain.Interfaces;
+using Domain.Messages;
 using InterfaceAdapters.Publisher;
 using MassTransit;
 using Moq;

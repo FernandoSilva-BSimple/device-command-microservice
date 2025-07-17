@@ -1,7 +1,7 @@
 using Application.DTO;
 using Application.Interfaces;
 using Application.IPublishers;
-using Application.Service;
+using Application.Services;
 using Domain.Factory;
 using Domain.IRepository;
 using Domain.Models;

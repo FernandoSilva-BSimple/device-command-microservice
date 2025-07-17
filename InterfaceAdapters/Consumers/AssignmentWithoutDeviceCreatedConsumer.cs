@@ -1,6 +1,6 @@
 using Application.DTO;
 using Application.Interfaces;
-using Contracts.Commands;
+using Domain.Commands;
 using MassTransit;
 using Microsoft.AspNetCore.Http.HttpResults;
 

@@ -1,6 +1,6 @@
 using Application.IPublishers;
-using Contracts.Messages;
 using Domain.Interfaces;
+using Domain.Messages;
 using MassTransit;
 
 namespace InterfaceAdapters.Publisher;
